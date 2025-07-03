@@ -31,7 +31,7 @@ This is a simple RESTful API built with **Flask** and **SQLAlchemy**, simulating
 
 ```json
 {
-  "name": "Basic T-Shirt",
-  "price": 49.90,
-  "description": "100% cotton T-shirt, perfect for everyday wear."
+    "name": "Notebook A5",
+    "price": 19.90,
+    "description": "60 sheets, hardcover, ruled."
 }
