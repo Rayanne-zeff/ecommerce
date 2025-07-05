@@ -6,7 +6,7 @@ This is a RESTful API built with **Flask** and **SQLAlchemy**, simulating core f
 
 ## 🚀 Technologies Used
 
-- [Python 3.13](https://www.python.org/)
+- [Python 3.11](https://www.python.org/)
 - [Flask](https://flask.palletsprojects.com/)
 - [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/)
 - [Flask-Login](https://flask-login.readthedocs.io/)

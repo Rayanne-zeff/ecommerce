@@ -11,7 +11,7 @@ __pycache__/
 .env
 
 # Ignore Elastic Beanstalk hidden files
-.elasticbeanstalk/*
+.elasticbeanstalk
 !.elasticbeanstalk/config.yml
 
 # Optional: ignore log files
