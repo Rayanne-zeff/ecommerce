@@ -4,7 +4,7 @@ This is a simple RESTful API built with **Flask** and **SQLAlchemy**, simulating
 
 ## 🚀 Technologies Used
 
-- [Python 3.x](https://www.python.org/)
+- [Python 3.13](https://www.python.org/)
 - [Flask](https://flask.palletsprojects.com/)
 - [Flask SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/)
 - SQLite3 (as a local database)

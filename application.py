@@ -1,17 +1,18 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from sqlalchemy.orm import joinedload
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = "123456789"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
+application = Flask(__name__)
+application.config['SECRET_KEY'] = "123456789"
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
 
 login_manager = LoginManager()
-db = SQLAlchemy(app)
-login_manager.init_app(app)
+db = SQLAlchemy(application)
+login_manager.init_app(application)
 login_manager.login_view = 'login'
-CORS(app)
+CORS(application)
 
 #Model
 #User (id, username, password)
@@ -19,6 +20,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=True)
+    cart = db.relationship('CartItem', backref='user', lazy=True)
 
 #Product (id, name,price, description)
 class Product(db.Model):
@@ -27,12 +29,19 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.Text, nullable=True)
 
+class CartItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'),nullable=False)
+
+
+
 #Autentication
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@app.route('/login', methods=["POST"])
+@application.route('/login', methods=["POST"])
 def login():
     data = request.json
     user = User.query.filter_by(username=data.get("username")).first()
@@ -43,13 +52,13 @@ def login():
         
     return jsonify({"message": "Unauthorized. Invalid credentials"}), 401
 
-@app.route('/logout', methods=["POST"])
+@application.route('/logout', methods=["POST"])
 @login_required
 def logout():
     logout_user()
     return jsonify({"message": "Logout in successfully"}), 200 
 
-@app.route('/api/products/add', methods=["POST"])
+@application.route('/api/products/add', methods=["POST"])
 @login_required
 def add_product():
     data = request.json
@@ -84,7 +93,7 @@ def add_product():
 
     return jsonify({"message": "Invalid product data"}), 400
 
-@app.route('/api/products/delete/<int:product_id>', methods=["DELETE"])
+@application.route('/api/products/delete/<int:product_id>', methods=["DELETE"])
 @login_required
 def delete_product(product_id):
     prod = Product.query.get(product_id)
@@ -94,7 +103,7 @@ def delete_product(product_id):
         return jsonify({"message": "Product deleted successfully"}), 200
     return jsonify({"message": "Product not found"}), 400
 
-@app.route('/api/products/<int:product_id>', methods=["GET"])
+@application.route('/api/products/<int:product_id>', methods=["GET"])
 def get_product_details(product_id):
     prod = Product.query.get(product_id)
     if prod:
@@ -106,7 +115,7 @@ def get_product_details(product_id):
         }), 200
     return jsonify({"message": "Product not found"}), 404
 
-@app.route('/api/products/update/<int:product_id>', methods=["PUT"])
+@application.route('/api/products/update/<int:product_id>', methods=["PUT"])
 @login_required
 def update_product(product_id):
     prod = Product.query.get(product_id)
@@ -126,7 +135,7 @@ def update_product(product_id):
     db.session.commit()     
     return jsonify({"message": "Product updated successfully"}), 200
 
-@app.route('/api/products', methods=['GET'])
+@application.route('/api/products', methods=['GET'])
 def get_prods():
     prods = Product.query.all()
     products_list=[]
@@ -141,9 +150,71 @@ def get_prods():
 
     return jsonify(products_list)
 
-@app.route('/')
-def hello_world():
-    return "Hello world"
+# Checkout
+
+@application.route('/api/cart/add/<int:product_id>', methods=['POST'])
+@login_required
+def add_to_cart(product_id):
+    # User
+    user = current_user
+    #Product
+    product = Product.query.get(product_id)
+
+    if user and product:
+        cart_item = CartItem(user_id=user.id, product_id=product.id)
+        db.session.add(cart_item)
+        db.session.commit()
+        return jsonify({'message': 'Item added to the cart successfully'}),200
+    return jsonify({'message': 'Failed to add item to the cart'}),400
+
+@application.route('/api/cart/remove/<int:product_id>', methods=['DELETE'])
+@login_required
+def remove_from_cart(product_id):
+    cart_item = CartItem.query.filter_by(user_id=current_user.id, product_id=product_id).first()
+    if cart_item:
+        db.session.delete(cart_item)
+        db.session.commit()
+        return jsonify({'message': 'Item removed from the cart successfully'}), 200
+    return jsonify({'message': 'Failed to remove item from the cart'}), 400
+
+@application.route('/api/cart', methods=['GET'])
+@login_required
+def view_cart():
+    cart_items = (
+        db.session.query(CartItem)
+        .join(Product, CartItem.product_id == Product.id)
+        .filter(CartItem.user_id == current_user.id)
+        .with_entities(
+            CartItem.id.label('cart_id'),
+            Product.id.label('product_id'),
+            Product.name,
+            Product.price
+        )
+        .all()
+    )
+
+    cart_content = []
+    for item in cart_items:
+        cart_content.append({
+            "cart_id": item.cart_id,
+            "product_id": item.product_id,
+            "name": item.name,
+            "price": item.price
+        })
+
+    return jsonify(cart_content), 200
+
+@application.route('/api/cart/checkout', methods=["POST"])
+@login_required
+def checkout():
+    CartItem.query.filter_by(user_id=current_user.id).delete()
+    db.session.commit()
+    return jsonify({'message': 'Checkout successful. Cart has been cleared.'}), 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from os import environ
+    port = int(environ.get("PORT", 8080))
+    with application.app_context():
+     db.create_all()
+    application.run(host='0.0.0.0', port=port, debug=True)
+    
