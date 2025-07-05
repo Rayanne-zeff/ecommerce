@@ -71,6 +71,14 @@ https://api-ecommerce-dev.eba-xxxxx.us-east-1.elasticbeanstalk.com/
   "description": "60 sheets, hardcover, ruled."
 }
 ```
+---
+
+⚙️ Environment Variables (.env)
+
+```bash
+SECRET_KEY=your-secret-key
+DATABASE_URL=sqlite:///ecommerce.db
+```
 
 ---
 
