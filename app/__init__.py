@@ -3,6 +3,9 @@ from .extensions import db, login_manager, cors
 from .models import User
 from .routes import auth_bp, products_bp, cart_bp
 from config import Config
+from flasgger import Swagger
+import os
+
 
 def create_app():
     app = Flask(__name__)
@@ -26,8 +29,12 @@ def create_app():
     app.register_blueprint(products_bp)
     app.register_blueprint(cart_bp)
 
+     # Rota de teste
     @app.route('/')
     def index():
         return 'API up'
-
+    
+    # Swagger usando arquivo externo
+    swagger_template_path = os.path.join(os.path.dirname(__file__), '..', 'docs', 'swagger.yaml')
+    Swagger(app, template_file=swagger_template_path)
     return app

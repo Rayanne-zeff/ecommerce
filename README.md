@@ -14,6 +14,36 @@ This is a RESTful API built with **Flask** and **SQLAlchemy**, simulating core f
 - [SQLite](https://www.sqlite.org/index.html)
 - [Docker](https://www.docker.com/)
 - [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
+- [Swagger/OpenAPI](https://swagger.io/tools/swagger-ui/) *(API documentation)*
+- [Postman](https://www.postman.com/) *(API testing)*
+
+---
+
+## 📑 API Documentation - Swagger UI
+
+The API includes an interactive documentation via Swagger UI, allowing you to explore all endpoints, input parameters, and test API calls directly from your browser.
+
+How to access the Swagger documentation:
+After running the API locally or on the server, open:
+
+```
+http://localhost:8080/apidocs/
+
+```
+
+or in production environment, replace with your API base URL, for example:
+
+```
+https://api-ecommerce-dev.eba-xxxxx.us-east-1.elasticbeanstalk.com/apidocs/
+
+```
+About the documentation:
+It follows the OpenAPI/Swagger 2.0 standard
+Defines all endpoints with HTTP methods, input parameters, and expected responses
+
+Makes it easier to understand and test the API without external tools
+
+
 
 ---
 
@@ -25,6 +55,7 @@ This is a RESTful API built with **Flask** and **SQLAlchemy**, simulating core f
 - ✅ Checkout functionality (clear cart)
 - ✅ Fully Dockerized for consistent deployment
 - ✅ Deployed to AWS Elastic Beanstalk
+- ✅ Postman collection for testing
 
 ---
 
@@ -34,6 +65,14 @@ This is a RESTful API built with **Flask** and **SQLAlchemy**, simulating core f
 https://api-ecommerce-dev.eba-xxxxx.us-east-1.elasticbeanstalk.com/
 ```
 
+---
+
+## 🔧 Postman Collection
+
+To test the API easily, import the Postman collection into your Postman app.
+
+- File: `ecommerce/ecommerce-api.postman_collection.json`
+  
 ---
 
 ## 🔓 Public Endpoints

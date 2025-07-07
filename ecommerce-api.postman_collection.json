@@ -1,0 +1,1267 @@
+{
+	"info": {
+		"_postman_id": "8232305b-42a4-44f1-b790-b717f3e47b8b",
+		"name": "E-commerce API",
+		"description": "API for an e-commerce system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13189505"
+	},
+	"item": [
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Log in",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logged in successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "<string>",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized. Invalid credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"item": [
+				{
+					"name": "Log out",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized. Invalid credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "{product_id}",
+							"item": [
+								{
+									"name": "Get product details by ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products/:product_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												":product_id"
+											],
+											"variable": [
+												{
+													"key": "product_id",
+													"value": "<integer>",
+													"description": "(Required) Product ID to retrieve details"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Returns product details",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/:product_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														":product_id"
+													],
+													"variable": [
+														{
+															"key": "product_id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}"
+										},
+										{
+											"name": "Not Found. Product not available.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/:product_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														":product_id"
+													],
+													"variable": [
+														{
+															"key": "product_id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "search",
+							"item": [
+								{
+									"name": "Search for products",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products/search?q=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												"search"
+											],
+											"query": [
+												{
+													"key": "q",
+													"value": "<string>",
+													"description": "(Required) Search query"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Returns a list of products matching the search query",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/search?q=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														"search"
+													],
+													"query": [
+														{
+															"key": "q",
+															"value": "<string>",
+															"description": "(Required) Search query"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"price\": \"<number>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"price\": \"<number>\",\n    \"description\": \"<string>\"\n  }\n]"
+										},
+										{
+											"name": "Not Found. No products found for the search query.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/search?q=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														"search"
+													],
+													"query": [
+														{
+															"key": "q",
+															"value": "<string>",
+															"description": "(Required) Search query"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "add",
+							"item": [
+								{
+									"name": "Add a new product",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/products/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												"add"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Product added successfully",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/products/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														"add"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Failed to add the product",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/products/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														"add"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "update",
+							"item": [
+								{
+									"name": "{product_id}",
+									"item": [
+										{
+											"name": "Update a product by ID",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/products/update/:product_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														"update",
+														":product_id"
+													],
+													"variable": [
+														{
+															"key": "product_id",
+															"value": "<integer>",
+															"description": "(Required) Product ID to update"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Product updated successfully",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/products/update/:product_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"products",
+																"update",
+																":product_id"
+															],
+															"variable": [
+																{
+																	"key": "product_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Failed to update the product",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/products/update/:product_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"products",
+																"update",
+																":product_id"
+															],
+															"variable": [
+																{
+																	"key": "product_id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Not Found. Product not available",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"description\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/products/update/:product_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"products",
+																"update",
+																":product_id"
+															],
+															"variable": [
+																{
+																	"key": "product_id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "delete",
+							"item": [
+								{
+									"name": "{product_id}",
+									"item": [
+										{
+											"name": "Delete a product by ID",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/delete/:product_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														"delete",
+														":product_id"
+													],
+													"variable": [
+														{
+															"key": "product_id",
+															"value": "<integer>",
+															"description": "(Required) Product ID to delete"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Product deleted successfully",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/products/delete/:product_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"products",
+																"delete",
+																":product_id"
+															],
+															"variable": [
+																{
+																	"key": "product_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Not Found. Product not available",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/products/delete/:product_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"products",
+																"delete",
+																":product_id"
+															],
+															"variable": [
+																{
+																	"key": "product_id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get a list of products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Returns a list of products",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"price\": \"<number>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"price\": \"<number>\",\n    \"description\": \"<string>\"\n  }\n]"
+								},
+								{
+									"name": "Not Found. No products available.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "cart",
+					"item": [
+						{
+							"name": "add",
+							"item": [
+								{
+									"name": "{product_id}",
+									"item": [
+										{
+											"name": "Add item to the cart",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/cart/add/:product_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"cart",
+														"add",
+														":product_id"
+													],
+													"variable": [
+														{
+															"key": "product_id",
+															"value": "<integer>",
+															"description": "(Required) Product ID to add to the cart"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Item added to the cart successfully",
+													"originalRequest": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/cart/add/:product_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"cart",
+																"add",
+																":product_id"
+															],
+															"variable": [
+																{
+																	"key": "product_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Failed to add item to the cart",
+													"originalRequest": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/cart/add/:product_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"cart",
+																"add",
+																":product_id"
+															],
+															"variable": [
+																{
+																	"key": "product_id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "remove",
+							"item": [
+								{
+									"name": "{item_id}",
+									"item": [
+										{
+											"name": "Remove item from the cart",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/cart/remove/:item_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"cart",
+														"remove",
+														":item_id"
+													],
+													"variable": [
+														{
+															"key": "item_id",
+															"value": "<integer>",
+															"description": "(Required) Cart item ID to remove from the cart"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Item removed from the cart successfully",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/cart/remove/:item_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"cart",
+																"remove",
+																":item_id"
+															],
+															"variable": [
+																{
+																	"key": "item_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Failed to remove item from the cart",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/cart/remove/:item_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"cart",
+																"remove",
+																":item_id"
+															],
+															"variable": [
+																{
+																	"key": "item_id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "checkout",
+							"item": [
+								{
+									"name": "Checkout and clear the cart",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/cart/checkout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"cart",
+												"checkout"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Checkout successful. Cart has been cleared.",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/cart/checkout",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"cart",
+														"checkout"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized. User not logged in",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/cart/checkout",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"cart",
+														"checkout"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "View the user's cart",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/cart",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"cart"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Returns the user's cart contents",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/cart",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"cart"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<integer>\",\n    \"user_id\": \"<integer>\",\n    \"product_id\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"user_id\": \"<integer>\",\n    \"product_id\": \"<integer>\"\n  }\n]"
+								},
+								{
+									"name": "Unauthorized. User not logged in",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/cart",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"cart"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:5000"
+		}
+	]
+}

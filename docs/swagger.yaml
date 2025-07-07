@@ -11,6 +11,8 @@ paths:
 
   /login:
     post:
+      tags:
+        - Auth
       summary: Log in
       parameters:
         - name: body
@@ -25,26 +27,28 @@ paths:
                 type: string
       responses:
         200:
-          headers: 
+          description: Logged in successfully
+          headers:
             Set-Cookie:
               type: string
-
-          description: Logged in successfully
-
         401:
           description: Unauthorized. Invalid credentials
 
   /logout:
     post:
+      tags:
+        - Auth
       summary: Log out
       responses:
         200:
           description: Logout successfully
         401:
           description: Unauthorized. Invalid credentials
-  
+
   /api/products:
     get:
+      tags:
+        - Products
       summary: Get a list of products
       responses:
         200:
@@ -58,6 +62,8 @@ paths:
 
   /api/products/{product_id}:
     get:
+      tags:
+        - Products
       summary: Get product details by ID
       parameters:
         - name: product_id
@@ -75,6 +81,8 @@ paths:
 
   /api/products/search:
     get:
+      tags:
+        - Products
       summary: Search for products
       parameters:
         - name: q
@@ -94,6 +102,8 @@ paths:
 
   /api/products/add:
     post:
+      tags:
+        - Products
       summary: Add a new product
       parameters:
         - name: body
@@ -109,6 +119,8 @@ paths:
 
   /api/products/update/{product_id}:
     put:
+      tags:
+        - Products
       summary: Update a product by ID
       parameters:
         - name: product_id
@@ -131,6 +143,8 @@ paths:
 
   /api/products/delete/{product_id}:
     delete:
+      tags:
+        - Products
       summary: Delete a product by ID
       parameters:
         - name: product_id
@@ -146,6 +160,8 @@ paths:
 
   /api/cart/add/{product_id}:
     post:
+      tags:
+        - Cart
       summary: Add item to the cart
       parameters:
         - name: product_id
@@ -161,6 +177,8 @@ paths:
 
   /api/cart/remove/{item_id}:
     delete:
+      tags:
+        - Cart
       summary: Remove item from the cart
       parameters:
         - name: item_id
@@ -176,6 +194,8 @@ paths:
 
   /api/cart:
     get:
+      tags:
+        - Cart
       summary: View the user's cart
       responses:
         200:
@@ -189,6 +209,8 @@ paths:
 
   /api/cart/checkout:
     post:
+      tags:
+        - Cart
       summary: Checkout and clear the cart
       responses:
         200:
